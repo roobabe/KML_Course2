@@ -1,0 +1,15 @@
+---
+
+- name: install list of software
+  hosts: localhost
+  become: yes
+  vars:
+    packages:
+        - git
+        - maven
+  tasks:
+  - name: installing packages
+    apt: 
+      name: "{{ item }}"
+      state: present
+    with_items: "{{ packages }}"
